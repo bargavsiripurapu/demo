@@ -9,11 +9,10 @@ node{
     stage('Build Docker Image'){
         sh 'docker build -t devopshub123/flask_demo_latest:2.0.0 .'
     }
-        stage('Push Docker Image'){
-     withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerHubPwd')]) {
-        sh "docker login -u devopshub123 -p ${dockerHubPwd}"
+    stage('Push image') {
+        withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
+        sh "docker push devopshub123/flask_demo_latest:2.0.0"
         }
-     sh 'docker push devopshub123/flask_demo_latest:2.0.0'
     }
     stage('Run Container on dev-server'){
         def dockerRun = 'docker run -p 9090:9090 -d --name flask_demo_latest devopshub123/flask_demo_latest:2.0.0'
