@@ -1,6 +1,6 @@
 node{
     stage('Scm Checkout'){
-        git branch: 'main', credentialsId: 'git_hub', url: 'https://github.com/bargavsiripurapu/flask_demo_Latest.git'
+        git branch: 'main', credentialsId: 'git_hub', url: 'https://github.com/bargavsiripurapu/demo.git'
     }
     stage('Mvn Package'){
         def mvnHome = tool name: 'maven-3', type: 'maven'
