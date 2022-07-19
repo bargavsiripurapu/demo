@@ -17,7 +17,7 @@ node{
     stage('Run Container on dev-server'){
         def dockerRun = 'docker run -p 9090:9090 -d --name flask_demo_latest devopshub123/flask_demo_latest:2.0.0'
         sshagent(['dev-server']) {
-        sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.1.184 ${dockerRun}"
+        sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.36.107 ${dockerRun}"
         }
     }
 }
